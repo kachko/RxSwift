@@ -57,7 +57,7 @@ public final class MainScheduler : SerialDispatchQueueScheduler {
 
         _mainQueue.async {
             if !cancel.isDisposed {
-                _ = action(state)
+                cancel.setDisposable(action(state))
             }
 
             self.numberEnqueued.decrement()
